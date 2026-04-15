@@ -17,6 +17,7 @@ return {
       { "<leader>e", group = "explorer" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
+      { "<leader>m", group = "misc (format)" },
       { "<leader>r", group = "refactor/rename" },
       { "<leader>s", group = "split" },
       { "<leader>w", group = "window/session" },

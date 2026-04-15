@@ -183,11 +183,19 @@
     },
     {
       "id": "formatting",
-      "status": "pending",
-      "applied_components": ["conform.nvim"],
-      "formatters_of_interest": ["prettier", "stylua", "csharpier (for c_sharp)", "black", "isort"],
-      "why": "Consistent code style across languages.",
-      "verification": ["manual_format_works", "format_on_save_if_enabled"]
+      "status": "done",
+      "plugins": [
+        { "id": "conform.nvim", "spec": "nvim/lua/plugins/conform.lua", "role": "unified formatter runner" }
+      ],
+      "formatters_by_ft": {
+        "lua": ["stylua"],
+        "javascript/typescript/html/css/json/yaml/markdown": ["prettier"],
+        "python": ["isort", "black"],
+        "cs": ["csharpier"]
+      },
+      "format_on_save": true,
+      "keymaps": { "<leader>mp": "format file or selection" },
+      "verification": ["saving_a_.lua_file_formats_with_stylua", "saving_a_.cs_file_formats_with_csharpier"]
     },
     {
       "id": "linting",
