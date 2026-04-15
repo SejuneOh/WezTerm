@@ -210,11 +210,21 @@
     },
     {
       "id": "linting",
-      "status": "pending",
-      "applied_components": ["nvim-lint"],
-      "linters_of_interest": ["eslint_d", "pylint"],
-      "why": "Static analysis feedback while editing.",
-      "verification": ["lint_messages_appear"]
+      "status": "done",
+      "plugins": [
+        { "id": "nvim-lint", "spec": "nvim/lua/plugins/nvim-lint.lua", "role": "async linter runner" }
+      ],
+      "linters_by_ft": {
+        "javascript/typescript/jsx/tsx": ["eslint_d"],
+        "python": ["pylint"]
+      },
+      "trigger_events": ["BufEnter", "BufWritePost", "InsertLeave"],
+      "keymaps": { "<leader>ml": "manually run linter" },
+      "notes": [
+        "pylint requires pip. If pip is missing, install via 'sudo apt install python3-pip' then ':MasonInstall pylint'.",
+        "eslint_d was auto-installed via mason-tool-installer."
+      ],
+      "verification": ["lint_diagnostics_appear_in_signcolumn_and_trouble"]
     },
     {
       "id": "git_integration",

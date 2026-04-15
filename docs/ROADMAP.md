@@ -19,6 +19,10 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
 - [x] **diagnostics** — trouble.nvim
       - Unified panel for diagnostics, symbols, LSP refs/defs, TODO, quickfix
       - Keymap namespace: `<leader>x`
+- [x] **linting** — nvim-lint
+      - Linters per filetype: eslint_d (js/ts), pylint (python)
+      - Runs on BufEnter / BufWritePost / InsertLeave
+      - Manual trigger: `<leader>ml`
 
 ## Pending
 
