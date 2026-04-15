@@ -16,6 +16,9 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
 - [x] **formatting** — conform.nvim
       - Formatters per filetype: stylua (lua), prettier (web), black+isort (python), csharpier (c#)
       - Format on save enabled (LSP fallback)
+- [x] **diagnostics** — trouble.nvim
+      - Unified panel for diagnostics, symbols, LSP refs/defs, TODO, quickfix
+      - Keymap namespace: `<leader>x`
 
 ## Pending
 

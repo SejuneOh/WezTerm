@@ -21,6 +21,7 @@ return {
       { "<leader>r", group = "refactor/rename" },
       { "<leader>s", group = "split" },
       { "<leader>w", group = "window/session" },
+      { "<leader>x", group = "trouble" },
     })
   end,
 }

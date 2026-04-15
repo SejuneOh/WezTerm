@@ -176,10 +176,21 @@
     },
     {
       "id": "diagnostics",
-      "status": "pending",
-      "applied_components": ["trouble.nvim"],
-      "why": "Unified panel for diagnostics, references, quickfix.",
-      "verification": ["trouble_panel_opens"]
+      "status": "done",
+      "plugins": [
+        { "id": "trouble.nvim", "spec": "nvim/lua/plugins/trouble.lua", "role": "unified panel for diagnostics, references, symbols, TODO, quickfix" }
+      ],
+      "keymaps": {
+        "<leader>xx": "all diagnostics",
+        "<leader>xX": "current buffer diagnostics",
+        "<leader>xs": "LSP symbols",
+        "<leader>xl": "LSP definitions/references/implementations",
+        "<leader>xL": "location list",
+        "<leader>xQ": "quickfix list",
+        "<leader>xt": "TODO list"
+      },
+      "which_key_groups_added": ["x=trouble"],
+      "verification": ["trouble_panel_opens", "diagnostics_navigate_to_file_line"]
     },
     {
       "id": "formatting",
