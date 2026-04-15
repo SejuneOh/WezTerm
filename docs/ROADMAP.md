@@ -27,6 +27,10 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
       - gitsigns: inline change markers, hunk stage/reset/preview, blame
       - lazygit: full terminal git UI via `<leader>gg`
       - External: lazygit binary installed at `~/.local/bin/lazygit`
+- [x] **database_client** — vim-dadbod + vim-dadbod-ui + vim-dadbod-completion
+      - Supports PostgreSQL (via `psql`) and MSSQL (via `sqlcmd`)
+      - Sidebar for connection/table browsing + query execution + autocomplete
+      - Setup details in `docs/DATABASE.md`
 
 ## Pending
 

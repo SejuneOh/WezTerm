@@ -159,13 +159,29 @@ All plugin specs live in `nvim/lua/plugins/` — one file per plugin.
 - `nvim-surround` — surround text with brackets/quotes
 - `substitute.nvim` — register-based substitution
 
-#### Pending (not yet installed)
-- Autocomplete: `nvim-cmp`, `LuaSnip`, `friendly-snippets`, `lspkind`
-- LSP: `mason.nvim`, `mason-lspconfig`, `nvim-lspconfig`
-- Diagnostics: `trouble.nvim`
-- Formatting: `conform.nvim`
-- Linting: `nvim-lint`
-- Git: `gitsigns.nvim`, `lazygit.nvim`
+#### Autocomplete & Snippets
+- `nvim-cmp` — completion engine
+- `cmp-nvim-lsp`, `cmp-buffer`, `cmp-path`, `cmp_luasnip` — sources
+- `LuaSnip`, `friendly-snippets` — snippet engine + collection
+- `lspkind.nvim` — completion menu icons
+
+#### LSP
+- `mason.nvim`, `mason-lspconfig`, `mason-tool-installer` — installers
+- `nvim-lspconfig` — LSP client config
+- Servers auto-installed: `lua_ls`, `ts_ls`, `pyright`, `html`, `cssls`, `jsonls`, `omnisharp` (C#)
+
+#### Diagnostics / Formatting / Linting
+- `trouble.nvim` — unified diagnostic panel
+- `conform.nvim` — stylua / prettier / black+isort / csharpier, with format-on-save
+- `nvim-lint` — eslint_d / pylint
+
+#### Git
+- `gitsigns.nvim` — inline git signs and hunk actions
+- `lazygit.nvim` — launch lazygit CLI in Neovim (`<leader>gg`)
+
+#### Database
+- `vim-dadbod` + `vim-dadbod-ui` + `vim-dadbod-completion` — PostgreSQL & MSSQL client
+- See [`docs/DATABASE.md`](./docs/DATABASE.md) for connection setup
 
 ---
 

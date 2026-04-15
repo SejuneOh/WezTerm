@@ -61,7 +61,8 @@
     "diagnostics",
     "formatting",
     "linting",
-    "git_integration"
+    "git_integration",
+    "database_client"
   ],
   "stages": [
     {
@@ -233,7 +234,7 @@
         { "id": "gitsigns.nvim", "spec": "nvim/lua/plugins/gitsigns.lua", "role": "inline git signs (add/change/delete markers in signcolumn) and hunk actions" },
         { "id": "lazygit.nvim", "spec": "nvim/lua/plugins/lazygit.lua", "role": "launch lazygit CLI from Neovim", "requires_external": "lazygit binary (installed at ~/.local/bin/lazygit)" }
       ],
-      "keymaps": {
+      "keymaps_gitsigns_lazygit": {
         "]h / [h": "next / previous hunk",
         "<leader>gs": "stage hunk (or visual selection)",
         "<leader>gr": "reset hunk (or visual selection)",
@@ -246,6 +247,34 @@
         "<leader>gg": "open lazygit"
       },
       "verification": ["git_signs_visible_in_modified_files", "lazygit_launches_with_<leader>gg"]
+    },
+    {
+      "id": "database_client",
+      "status": "done",
+      "plugins": [
+        { "id": "vim-dadbod", "spec": "nvim/lua/plugins/dadbod.lua", "role": "DB connection and query execution engine" },
+        { "id": "vim-dadbod-ui", "role": "sidebar UI for browsing connections, tables, queries" },
+        { "id": "vim-dadbod-completion", "role": "table/column autocomplete (integrates with nvim-cmp for sql filetypes)" }
+      ],
+      "supported_databases_for_user": ["mssql", "postgresql"],
+      "required_external_cli": [
+        { "db": "postgresql", "cli": "psql", "install": "sudo apt install postgresql-client" },
+        { "db": "mssql", "cli": "sqlcmd", "install": "Microsoft mssql-tools + unixodbc-dev (see docs/DATABASE.md)" }
+      ],
+      "keymaps": {
+        "<leader>du": "toggle DB UI sidebar",
+        "<leader>df": "find DB query buffer",
+        "<leader>da": "add new DB connection",
+        "<leader>db (cursor on query)": "execute query"
+      },
+      "which_key_groups_updated": ["d=diagnostic/database"],
+      "treesitter_parsers_added": ["sql"],
+      "notes": [
+        "Connection URLs are stored by dadbod-ui. Standard env-var patterns: $DATABASE_URL, or per-connection via :DBUIAddConnection.",
+        "PostgreSQL URL format: postgresql://user:pass@host:5432/dbname",
+        "MSSQL URL format: sqlserver://user:pass@host:1433?database=dbname"
+      ],
+      "verification": ["DBUIToggle_opens_sidebar", "query_execution_returns_results"]
     }
   ],
   "user_preferences": {
@@ -254,7 +283,8 @@
     "indent_guide_char": "┊",
     "transparency": true,
     "globalstatus": true,
-    "primary_language": "c_sharp"
+    "primary_language": "c_sharp",
+    "databases_used": ["mssql", "postgresql"]
   },
   "known_deviations_from_reference_tutorial": [
     {
