@@ -131,11 +131,18 @@
     },
     {
       "id": "autocomplete_and_snippets",
-      "status": "pending",
-      "applied_components": ["nvim-cmp", "LuaSnip", "friendly-snippets", "lspkind"],
-      "how_applied": "Configure completion menu, snippet engine, and icons.",
-      "why": "IDE-like completion experience.",
-      "verification": ["completion_popup_appears", "snippets_expand"]
+      "status": "done",
+      "plugins": [
+        { "id": "nvim-cmp", "spec": "nvim/lua/plugins/nvim-cmp.lua", "role": "completion engine", "keymaps": ["<C-j>", "<C-k>", "<C-Space>", "<CR>", "<C-e>", "<C-b>", "<C-f>"] },
+        { "id": "cmp-nvim-lsp", "role": "LSP source for nvim-cmp" },
+        { "id": "cmp-buffer", "role": "current-buffer-word source" },
+        { "id": "cmp-path", "role": "file-path source" },
+        { "id": "cmp_luasnip", "role": "snippet source" },
+        { "id": "LuaSnip", "role": "snippet engine (version v2.*, jsregexp built)" },
+        { "id": "friendly-snippets", "role": "VSCode-style snippet collection (supports c_sharp, js, python, etc.)" },
+        { "id": "lspkind.nvim", "role": "icons in completion menu" }
+      ],
+      "verification": ["completion_popup_appears_on_typing", "snippets_expand_with_<CR>"]
     },
     {
       "id": "lsp_setup",

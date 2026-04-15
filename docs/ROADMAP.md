@@ -10,12 +10,12 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
 - [x] **ui_and_navigation** — tokyonight, nvim-tree, telescope, which-key, alpha, bufferline, lualine, dressing
 - [x] **session_and_window_management** — auto-session, vim-maximizer
 - [x] **syntax_and_editing_helpers** — treesitter, indent-blankline, autopairs, Comment, todo-comments, surround, substitute
+- [x] **autocomplete_and_snippets** — nvim-cmp + cmp-{nvim-lsp,buffer,path,luasnip}, LuaSnip, friendly-snippets, lspkind
 
 ## Pending
 
 - [ ] **basic_options** — line numbers, tab width, clipboard, search, splits (not a plugin; set in `init.lua` or `lua/config/options.lua`)
 - [ ] **basic_keymaps** — leader mappings, save/quit shortcuts
-- [ ] **autocomplete_and_snippets** — nvim-cmp, LuaSnip, friendly-snippets, lspkind
 - [ ] **lsp_setup** — mason, mason-lspconfig, nvim-lspconfig
       - For C#: `omnisharp` or `csharp_ls`
       - For Lua: `lua_ls`
