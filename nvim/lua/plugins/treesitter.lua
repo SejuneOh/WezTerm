@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "master", -- classic API (main branch was rewritten with breaking changes)
   event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   config = function()
