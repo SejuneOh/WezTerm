@@ -146,12 +146,33 @@
     },
     {
       "id": "lsp_setup",
-      "status": "pending",
-      "applied_components": ["mason.nvim", "mason-lspconfig", "nvim-lspconfig"],
-      "how_applied": "Install language servers via Mason and attach via lspconfig.",
-      "languages_of_interest": ["c_sharp (omnisharp or csharp_ls)", "lua (lua_ls)", "typescript (ts_ls)", "python (pyright)"],
-      "why": "Go-to-definition, references, rename, diagnostics, code actions.",
-      "verification": ["lsp_server_attaches_on_buffer", "definition_reference_rename_codeaction_work"]
+      "status": "done",
+      "plugins": [
+        { "id": "mason.nvim", "spec": "nvim/lua/plugins/mason.lua", "role": "LSP / formatter / linter installer" },
+        { "id": "mason-lspconfig.nvim", "role": "bridge between mason and lspconfig, auto-install LSP servers" },
+        { "id": "mason-tool-installer.nvim", "role": "auto-install formatters and linters" },
+        { "id": "nvim-lspconfig", "spec": "nvim/lua/plugins/lspconfig.lua", "role": "LSP client configuration" }
+      ],
+      "installed_lsp_servers": ["lua_ls", "ts_ls", "pyright", "html", "cssls", "jsonls"],
+      "pending_lsp_servers": [
+        { "id": "omnisharp", "language": "c_sharp", "requires": ".NET SDK (dotnet) — install separately with 'sudo apt install dotnet-sdk-8.0' or from https://dot.net" }
+      ],
+      "keymaps": {
+        "gd": "go to definition (Telescope)",
+        "gD": "go to declaration",
+        "gi": "go to implementation",
+        "gt": "go to type definition",
+        "gR": "find references",
+        "K": "hover documentation",
+        "<leader>ca": "code action",
+        "<leader>rn": "rename symbol",
+        "<leader>d": "show line diagnostic",
+        "<leader>D": "buffer diagnostics list",
+        "[d / ]d": "prev / next diagnostic",
+        "<leader>rs": "restart LSP"
+      },
+      "which_key_groups_added": ["c=code", "d=diagnostic", "r=refactor/rename"],
+      "verification": ["lsp_server_attaches_on_buffer_open", "gd_jumps_to_definition", "K_shows_hover_docs"]
     },
     {
       "id": "diagnostics",

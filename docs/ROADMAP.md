@@ -11,11 +11,28 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
 - [x] **session_and_window_management** — auto-session, vim-maximizer
 - [x] **syntax_and_editing_helpers** — treesitter, indent-blankline, autopairs, Comment, todo-comments, surround, substitute
 - [x] **autocomplete_and_snippets** — nvim-cmp + cmp-{nvim-lsp,buffer,path,luasnip}, LuaSnip, friendly-snippets, lspkind
+- [x] **lsp_setup** — mason, mason-lspconfig, mason-tool-installer, nvim-lspconfig
+      - Installed LSP: lua_ls, ts_ls, pyright, html, cssls, jsonls
+      - Pending LSP: omnisharp (requires .NET SDK — see note below)
 
 ## Pending
 
 - [ ] **basic_options** — line numbers, tab width, clipboard, search, splits (not a plugin; set in `init.lua` or `lua/config/options.lua`)
 - [ ] **basic_keymaps** — leader mappings, save/quit shortcuts
+
+### Note: C# LSP (omnisharp)
+
+`omnisharp` requires the .NET SDK. Install it separately:
+
+```bash
+# Ubuntu / WSL2
+sudo apt install dotnet-sdk-8.0
+
+# Then re-run Mason install inside Neovim
+:MasonInstall omnisharp
+```
+
+After that, open any `.cs` file and omnisharp will attach automatically.
 - [ ] **lsp_setup** — mason, mason-lspconfig, nvim-lspconfig
       - For C#: `omnisharp` or `csharp_ls`
       - For Lua: `lua_ls`
