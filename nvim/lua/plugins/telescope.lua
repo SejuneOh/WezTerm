@@ -28,6 +28,12 @@ return {
     -- 키 바인딩
     local keymap = vim.keymap.set
     keymap("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "파일 찾기" })
+    keymap("n", "<leader>fF", function()
+      require("telescope.builtin").find_files({
+        hidden = true, -- 숨김 파일(dotfile) 포함
+        no_ignore = true, -- .gitignore 무시
+      })
+    end, { desc = "파일 찾기 (숨김 + gitignore 포함)" })
     keymap("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "최근 파일" })
     keymap("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "프로젝트 텍스트 검색" })
     keymap("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "커서 아래 단어 검색" })
