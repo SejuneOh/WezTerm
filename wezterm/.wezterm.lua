@@ -16,6 +16,9 @@ config.color_scheme = "Tokyo Night"
 -- Background Opacity
 config.window_background_opacity = 0.92
 
+-- Default to WSL
+config.default_domain = "WSL:Ubuntu"
+
 -- Tab Bar
 config.use_fancy_tab_bar = false
 
