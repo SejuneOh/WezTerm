@@ -5,7 +5,6 @@ local config = wezterm.config_builder()
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
-local modal = wezterm.plugin.require("https://github.com/MLFlexer/modal.wezterm")
 
 -- Font
 config.font = wezterm.font("D2CodingLigature Nerd Font")
@@ -16,9 +15,6 @@ config.color_scheme = "Tokyo Night"
 
 -- Background Opacity
 config.window_background_opacity = 0.92
-
--- Default to WSL
-config.default_domain = "WSL:Ubuntu"
 
 -- Tab Bar
 config.use_fancy_tab_bar = false
@@ -95,35 +91,5 @@ config.keys = {
 
 -- Smart Splits (Neovim integration)
 smart_splits.apply_to_config(config)
-
--- Modal (Zellij-like modes with hint status bar)
-modal.apply_to_config(config)
-
--- Enter-mode keybindings (Alt+n은 workspace 이동에 쓰고 있어서 Scroll은 Alt+p로)
-table.insert(config.keys, {
-  key = "u",
-  mods = "ALT",
-  action = modal.activate_mode("UI"),
-})
-table.insert(config.keys, {
-  key = "c",
-  mods = "ALT",
-  action = modal.activate_mode("copy_mode"),
-})
-table.insert(config.keys, {
-  key = "p",
-  mods = "ALT",
-  action = modal.activate_mode("Scroll"),
-})
-
--- 모드 진입/종료 시 우측 상태바에 힌트 표시
-wezterm.on("modal.enter", function(name, window, pane)
-  modal.set_right_status(window, name)
-  modal.set_window_title(pane, name)
-end)
-wezterm.on("modal.exit", function(name, window, pane)
-  window:set_right_status("")
-  modal.reset_window_title(pane)
-end)
 
 return config
