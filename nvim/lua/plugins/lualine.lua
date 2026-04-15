@@ -4,7 +4,7 @@ return {
   config = function()
     require("lualine").setup({
       options = {
-        theme = "tokyonight",
+        theme = "catppuccin",
         globalstatus = true, -- 분할 창에도 하나의 상태바만 표시
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },

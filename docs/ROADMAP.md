@@ -7,7 +7,7 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
 - [x] **initial_installs** — WezTerm, Neovim 0.10+, git, ripgrep, node, Nerd Font
 - [x] **config_file_structure** — `~/.config/nvim/` with `init.lua` + `lua/plugins/`
 - [x] **plugin_manager** — `lazy.nvim` bootstrapped in `init.lua`
-- [x] **ui_and_navigation** — tokyonight, nvim-tree, telescope, which-key, alpha, bufferline, lualine, dressing
+- [x] **ui_and_navigation** — catppuccin, nvim-tree, telescope, which-key, alpha, bufferline, lualine, dressing
 - [x] **session_and_window_management** — auto-session, vim-maximizer
 - [x] **syntax_and_editing_helpers** — treesitter, indent-blankline, autopairs, Comment, todo-comments, surround, substitute
 - [x] **autocomplete_and_snippets** — nvim-cmp + cmp-{nvim-lsp,buffer,path,luasnip}, LuaSnip, friendly-snippets, lspkind
@@ -86,5 +86,5 @@ sudo apt install dotnet-sdk-8.0
   - `g` — git
   - `s` — split
   - `w` — window / session
-- **Transparent background** — both WezTerm (`window_background_opacity = 0.92`) and tokyonight (`transparent = true`) so a single change affects the whole stack.
+- **Transparent background** — both WezTerm (`window_background_opacity = 0.92`) and catppuccin (`transparent_background = true`) so a single change affects the whole stack.
 - **Primary language: C#** — when choosing LSP/formatter/linter for future work, include C# by default.

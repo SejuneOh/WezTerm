@@ -137,7 +137,7 @@ All plugin specs live in `nvim/lua/plugins/` — one file per plugin.
 ### Installed Plugins (by category)
 
 #### UI & Navigation
-- `tokyonight.nvim` — color scheme (matches WezTerm)
+- `catppuccin/nvim` — color scheme (matches WezTerm)
 - `nvim-tree.lua` — file explorer
 - `telescope.nvim` + `telescope-fzf-native` — fuzzy finder
 - `which-key.nvim` — keybinding discovery popup

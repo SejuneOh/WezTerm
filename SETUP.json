@@ -99,7 +99,7 @@
       "id": "ui_and_navigation",
       "status": "done",
       "plugins": [
-        { "id": "tokyonight", "spec": "nvim/lua/plugins/tokyonight.lua", "role": "color scheme (matches WezTerm)" },
+        { "id": "catppuccin", "spec": "nvim/lua/plugins/catppuccin.lua", "role": "color scheme (matches WezTerm)" },
         { "id": "nvim-tree", "spec": "nvim/lua/plugins/nvim-tree.lua", "role": "file explorer", "keymaps": ["<leader>ee", "<leader>ef", "<leader>ec", "<leader>er"] },
         { "id": "telescope", "spec": "nvim/lua/plugins/telescope.lua", "role": "fuzzy finder", "keymaps": ["<leader>ff", "<leader>fr", "<leader>fs", "<leader>fc", "<leader>fb", "<leader>fh"] },
         { "id": "which-key", "spec": "nvim/lua/plugins/which-key.lua", "role": "keybinding discovery popup" },
