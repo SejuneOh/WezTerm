@@ -11,7 +11,7 @@ config.font = wezterm.font("D2CodingLigature Nerd Font")
 config.font_size = 10.0
 
 -- Color Theme
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "Catppuccin Mocha"
 
 -- Background Opacity
 config.window_background_opacity = 0.92
@@ -33,7 +33,7 @@ config.window_padding = {
 -- Tabline
 tabline.setup({
   options = {
-    theme = "Tokyo Night",
+    theme = "Catppuccin Mocha",
   },
 })
 
