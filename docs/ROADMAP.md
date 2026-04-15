@@ -23,6 +23,10 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
       - Linters per filetype: eslint_d (js/ts), pylint (python)
       - Runs on BufEnter / BufWritePost / InsertLeave
       - Manual trigger: `<leader>ml`
+- [x] **git_integration** — gitsigns.nvim + lazygit.nvim
+      - gitsigns: inline change markers, hunk stage/reset/preview, blame
+      - lazygit: full terminal git UI via `<leader>gg`
+      - External: lazygit binary installed at `~/.local/bin/lazygit`
 
 ## Pending
 

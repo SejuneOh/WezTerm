@@ -228,10 +228,24 @@
     },
     {
       "id": "git_integration",
-      "status": "pending",
-      "applied_components": ["gitsigns.nvim", "lazygit.nvim"],
-      "why": "Inline git signs and terminal git UI.",
-      "verification": ["git_signs_visible", "hunk_actions_work", "lazygit_launches"]
+      "status": "done",
+      "plugins": [
+        { "id": "gitsigns.nvim", "spec": "nvim/lua/plugins/gitsigns.lua", "role": "inline git signs (add/change/delete markers in signcolumn) and hunk actions" },
+        { "id": "lazygit.nvim", "spec": "nvim/lua/plugins/lazygit.lua", "role": "launch lazygit CLI from Neovim", "requires_external": "lazygit binary (installed at ~/.local/bin/lazygit)" }
+      ],
+      "keymaps": {
+        "]h / [h": "next / previous hunk",
+        "<leader>gs": "stage hunk (or visual selection)",
+        "<leader>gr": "reset hunk (or visual selection)",
+        "<leader>gS": "stage entire buffer",
+        "<leader>gu": "undo stage hunk",
+        "<leader>gR": "reset entire buffer",
+        "<leader>gp": "preview hunk",
+        "<leader>gb": "blame line",
+        "<leader>gd": "diff buffer",
+        "<leader>gg": "open lazygit"
+      },
+      "verification": ["git_signs_visible_in_modified_files", "lazygit_launches_with_<leader>gg"]
     }
   ],
   "user_preferences": {
