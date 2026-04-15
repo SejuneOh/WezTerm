@@ -32,9 +32,14 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
       - Sidebar for connection/table browsing + query execution + autocomplete
       - Setup details in `docs/DATABASE.md`
 
+- [x] **basic_options** — `lua/config/options.lua`
+      - Line numbers (absolute + relative), 2-space indent, clipboard sharing
+      - Smart search (case-insensitive unless capital), cursorline, scrolloff=8
+      - splitright / splitbelow, signcolumn always on, undofile for persistent undo
+      - termguicolors, mouse enabled, updatetime=250, timeoutlen=500
+
 ## Pending
 
-- [ ] **basic_options** — line numbers, tab width, clipboard, search, splits (not a plugin; set in `init.lua` or `lua/config/options.lua`)
 - [ ] **basic_keymaps** — leader mappings, save/quit shortcuts
 
 ### Note: C# LSP (omnisharp)
