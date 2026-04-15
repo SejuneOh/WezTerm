@@ -1,0 +1,9 @@
+# Editor temp files
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Neovim runtime data (installed plugins, sessions, etc.)
+# Only source/config files should be tracked.
+nvim/lazy-lock.json.bak

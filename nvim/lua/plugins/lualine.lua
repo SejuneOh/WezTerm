@@ -1,0 +1,22 @@
+return {
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("lualine").setup({
+      options = {
+        theme = "tokyonight",
+        globalstatus = true, -- 분할 창에도 하나의 상태바만 표시
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+      },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { { "filename", path = 1 } }, -- 상대경로 표시
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
+      },
+    })
+  end,
+}

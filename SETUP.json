@@ -1,0 +1,201 @@
+{
+  "$schema": "./docs/setup-schema.json",
+  "project_type": "wezterm_neovim_dotfiles",
+  "version": "0.1.0",
+  "last_updated": "2026-04-15",
+  "goal": "Reproducible terminal + editor development environment (WezTerm + Neovim).",
+  "target_platforms": ["wsl2_ubuntu", "linux", "macos"],
+  "entry_points": {
+    "wezterm_config": "wezterm/.wezterm.lua",
+    "neovim_config": "nvim/init.lua",
+    "install_script": "scripts/install.sh"
+  },
+  "install_paths": {
+    "wezterm": "~/.wezterm.lua",
+    "neovim": "~/.config/nvim"
+  },
+  "prerequisites": [
+    {
+      "name": "wezterm",
+      "check": "command -v wezterm",
+      "install_hint": "https://wezfurlong.org/wezterm/install/linux.html"
+    },
+    {
+      "name": "neovim",
+      "minimum_version": "0.10",
+      "check": "nvim --version | head -1",
+      "install_hint": "Download from https://github.com/neovim/neovim/releases/latest (Ubuntu apt version is too old)."
+    },
+    {
+      "name": "git",
+      "check": "command -v git"
+    },
+    {
+      "name": "node",
+      "minimum_version": "18",
+      "check": "node --version",
+      "purpose": "LSP servers"
+    },
+    {
+      "name": "ripgrep",
+      "check": "command -v rg",
+      "purpose": "Telescope live grep"
+    },
+    {
+      "name": "nerd_font",
+      "recommended": "D2CodingLigature Nerd Font",
+      "purpose": "Icons in bufferline, lualine, nvim-tree"
+    }
+  ],
+  "workflow_order": [
+    "initial_installs",
+    "config_file_structure",
+    "basic_options",
+    "basic_keymaps",
+    "plugin_manager",
+    "ui_and_navigation",
+    "session_and_window_management",
+    "syntax_and_editing_helpers",
+    "autocomplete_and_snippets",
+    "lsp_setup",
+    "diagnostics",
+    "formatting",
+    "linting",
+    "git_integration"
+  ],
+  "stages": [
+    {
+      "id": "wezterm_config",
+      "status": "done",
+      "file": "wezterm/.wezterm.lua",
+      "applied_components": [
+        "font_d2coding_nerd",
+        "theme_tokyo_night",
+        "background_opacity_0.92",
+        "tab_bar_plain",
+        "window_padding_zero",
+        "keybinding_copy_paste",
+        "keybinding_workspace_switcher",
+        "plugin_tabline",
+        "plugin_smart_workspace_switcher",
+        "plugin_smart_splits"
+      ],
+      "verification": [
+        "wezterm launches",
+        "font renders icons (check nvim-tree later)",
+        "Ctrl+c copies selected text",
+        "Alt+s opens workspace switcher"
+      ]
+    },
+    {
+      "id": "neovim_bootstrap",
+      "status": "done",
+      "file": "nvim/init.lua",
+      "applied_components": ["lazy_nvim_bootstrap", "plugin_spec_directory"],
+      "verification": [":Lazy opens", "plugins_install_on_first_launch"]
+    },
+    {
+      "id": "ui_and_navigation",
+      "status": "done",
+      "plugins": [
+        { "id": "tokyonight", "spec": "nvim/lua/plugins/tokyonight.lua", "role": "color scheme (matches WezTerm)" },
+        { "id": "nvim-tree", "spec": "nvim/lua/plugins/nvim-tree.lua", "role": "file explorer", "keymaps": ["<leader>ee", "<leader>ef", "<leader>ec", "<leader>er"] },
+        { "id": "telescope", "spec": "nvim/lua/plugins/telescope.lua", "role": "fuzzy finder", "keymaps": ["<leader>ff", "<leader>fr", "<leader>fs", "<leader>fc", "<leader>fb", "<leader>fh"] },
+        { "id": "which-key", "spec": "nvim/lua/plugins/which-key.lua", "role": "keybinding discovery popup" },
+        { "id": "alpha-nvim", "spec": "nvim/lua/plugins/alpha.lua", "role": "startup dashboard" },
+        { "id": "bufferline", "spec": "nvim/lua/plugins/bufferline.lua", "role": "top tab bar", "keymaps": ["<Tab>", "<S-Tab>", "<leader>1-9", "<leader>bp", "<leader>bd"] },
+        { "id": "lualine", "spec": "nvim/lua/plugins/lualine.lua", "role": "statusline" },
+        { "id": "dressing", "spec": "nvim/lua/plugins/dressing.lua", "role": "improved input/select UI" }
+      ]
+    },
+    {
+      "id": "session_and_window_management",
+      "status": "done",
+      "plugins": [
+        { "id": "auto-session", "spec": "nvim/lua/plugins/auto-session.lua", "role": "per-directory session save/restore", "keymaps": ["<leader>ws", "<leader>wr"] },
+        { "id": "vim-maximizer", "spec": "nvim/lua/plugins/vim-maximizer.lua", "role": "split maximize toggle", "keymaps": ["<leader>sm"] }
+      ]
+    },
+    {
+      "id": "syntax_and_editing_helpers",
+      "status": "done",
+      "plugins": [
+        { "id": "nvim-treesitter", "spec": "nvim/lua/plugins/treesitter.lua", "role": "syntax highlighting & indentation", "languages": ["lua", "vim", "vimdoc", "javascript", "typescript", "tsx", "html", "css", "json", "yaml", "markdown", "markdown_inline", "bash", "python", "go", "rust", "c_sharp"] },
+        { "id": "indent-blankline", "spec": "nvim/lua/plugins/indent-blankline.lua", "role": "indent guides" },
+        { "id": "nvim-autopairs", "spec": "nvim/lua/plugins/autopairs.lua", "role": "auto-close brackets", "depends_on": ["nvim-cmp (optional)"] },
+        { "id": "Comment.nvim", "spec": "nvim/lua/plugins/comment.lua", "role": "toggle comments (gcc)" },
+        { "id": "todo-comments", "spec": "nvim/lua/plugins/todo-comments.lua", "role": "TODO/FIXME highlighting", "keymaps": ["]t", "[t", "<leader>ft"] },
+        { "id": "nvim-surround", "spec": "nvim/lua/plugins/surround.lua", "role": "surround text with delimiters" },
+        { "id": "substitute.nvim", "spec": "nvim/lua/plugins/substitute.lua", "role": "register-based substitution", "keymaps": ["s", "ss", "S"] }
+      ]
+    },
+    {
+      "id": "autocomplete_and_snippets",
+      "status": "pending",
+      "applied_components": ["nvim-cmp", "LuaSnip", "friendly-snippets", "lspkind"],
+      "how_applied": "Configure completion menu, snippet engine, and icons.",
+      "why": "IDE-like completion experience.",
+      "verification": ["completion_popup_appears", "snippets_expand"]
+    },
+    {
+      "id": "lsp_setup",
+      "status": "pending",
+      "applied_components": ["mason.nvim", "mason-lspconfig", "nvim-lspconfig"],
+      "how_applied": "Install language servers via Mason and attach via lspconfig.",
+      "languages_of_interest": ["c_sharp (omnisharp or csharp_ls)", "lua (lua_ls)", "typescript (ts_ls)", "python (pyright)"],
+      "why": "Go-to-definition, references, rename, diagnostics, code actions.",
+      "verification": ["lsp_server_attaches_on_buffer", "definition_reference_rename_codeaction_work"]
+    },
+    {
+      "id": "diagnostics",
+      "status": "pending",
+      "applied_components": ["trouble.nvim"],
+      "why": "Unified panel for diagnostics, references, quickfix.",
+      "verification": ["trouble_panel_opens"]
+    },
+    {
+      "id": "formatting",
+      "status": "pending",
+      "applied_components": ["conform.nvim"],
+      "formatters_of_interest": ["prettier", "stylua", "csharpier (for c_sharp)", "black", "isort"],
+      "why": "Consistent code style across languages.",
+      "verification": ["manual_format_works", "format_on_save_if_enabled"]
+    },
+    {
+      "id": "linting",
+      "status": "pending",
+      "applied_components": ["nvim-lint"],
+      "linters_of_interest": ["eslint_d", "pylint"],
+      "why": "Static analysis feedback while editing.",
+      "verification": ["lint_messages_appear"]
+    },
+    {
+      "id": "git_integration",
+      "status": "pending",
+      "applied_components": ["gitsigns.nvim", "lazygit.nvim"],
+      "why": "Inline git signs and terminal git UI.",
+      "verification": ["git_signs_visible", "hunk_actions_work", "lazygit_launches"]
+    }
+  ],
+  "user_preferences": {
+    "theme_family": "tokyo_night",
+    "leader_key": "\\",
+    "indent_guide_char": "┊",
+    "transparency": true,
+    "globalstatus": true,
+    "primary_language": "c_sharp"
+  },
+  "known_deviations_from_reference_tutorial": [
+    {
+      "tutorial_item": "vim-tmux-navigator",
+      "replaced_with": "smart-splits.nvim",
+      "reason": "User runs WezTerm (not tmux). smart-splits integrates WezTerm panes with Neovim splits under one keymap."
+    }
+  ],
+  "notes_for_ai": [
+    "All plugin specs are one-file-per-plugin under nvim/lua/plugins/. Add new plugins by creating a new file that returns a lazy.nvim spec — do not modify existing files unless editing that plugin.",
+    "Keymaps use '\\' as leader. Group namespaces registered in which-key.lua: b=buffer, e=explorer, f=find, g=git, s=split, w=window/session.",
+    "When adding an LSP/formatter/linter for a new language, update both the corresponding plugin spec AND the 'languages_of_interest' or 'formatters_of_interest' field in this manifest.",
+    "Primary target language is C# — when suggesting tools (LSP, formatter), include C# by default."
+  ]
+}

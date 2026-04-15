@@ -1,0 +1,71 @@
+local wezterm = require("wezterm")
+local config = wezterm.config_builder()
+
+-- Plugins
+local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
+
+-- Font
+config.font = wezterm.font("D2CodingLigature Nerd Font")
+config.font_size = 10.0
+
+-- Color Theme
+config.color_scheme = "Tokyo Night"
+
+-- Background Opacity
+config.window_background_opacity = 0.92
+
+-- Tab Bar
+config.use_fancy_tab_bar = false
+
+-- Window Padding
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
+}
+
+-- Tabline
+tabline.setup({
+  options = {
+    theme = "Tokyo Night",
+  },
+})
+
+-- Smart Workspace Switcher
+workspace_switcher.apply_to_config(config)
+
+-- Keybindings
+config.keys = {
+  -- Workspace switcher (Alt+s)
+  {
+    key = "s",
+    mods = "ALT",
+    action = workspace_switcher.switch_workspace(),
+  },
+  -- Previous workspace (Alt+n)
+  {
+    key = "n",
+    mods = "ALT",
+    action = workspace_switcher.switch_to_prev_workspace(),
+  },
+  -- Copy (Ctrl+c)
+  {
+    key = "c",
+    mods = "CTRL",
+    action = wezterm.action.CopyTo("Clipboard"),
+  },
+  -- Paste (Ctrl+v)
+  {
+    key = "v",
+    mods = "CTRL",
+    action = wezterm.action.PasteFrom("Clipboard"),
+  },
+}
+
+-- Smart Splits (Neovim integration)
+smart_splits.apply_to_config(config)
+
+return config
