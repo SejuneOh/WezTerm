@@ -63,6 +63,30 @@ config.keys = {
     mods = "CTRL",
     action = wezterm.action.PasteFrom("Clipboard"),
   },
+  -- Split pane horizontally — 좌/우 (Ctrl+Shift+d)
+  {
+    key = "d",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+  },
+  -- Split pane vertically — 상/하 (Ctrl+Shift+D)
+  {
+    key = "D",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+  },
+  -- Close current pane (Ctrl+Shift+w)
+  {
+    key = "w",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.CloseCurrentPane({ confirm = true }),
+  },
+  -- Toggle pane zoom (Ctrl+Shift+z)
+  {
+    key = "z",
+    mods = "CTRL|SHIFT",
+    action = wezterm.action.TogglePaneZoomState,
+  },
 }
 
 -- Smart Splits (Neovim integration)
