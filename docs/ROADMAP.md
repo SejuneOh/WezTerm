@@ -38,9 +38,15 @@ Installation phases, in recommended order. Mirrors `SETUP.json`.
       - splitright / splitbelow, signcolumn always on, undofile for persistent undo
       - termguicolors, mouse enabled, updatetime=250, timeoutlen=500
 
+- [x] **basic_keymaps** — `lua/config/keymaps.lua`
+      - Leader key explicitly set to `\` in `init.lua` (before lazy.nvim)
+      - `<Esc>` clear search highlight, `<C-s>` save, `<C-a>` select all
+      - Visual indent stay (`<` / `>`), visual paste keep register
+      - Window splits: `<leader>sv/sh/se/sx`
+
 ## Pending
 
-- [ ] **basic_keymaps** — leader mappings, save/quit shortcuts
+_(no pending items)_
 
 ### Note: C# LSP (omnisharp)
 

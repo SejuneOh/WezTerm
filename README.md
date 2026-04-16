@@ -50,7 +50,7 @@ bash scripts/install.sh
 
 The install script will:
 1. Verify prerequisites
-2. Symlink `wezterm/.wezterm.lua` → `~/.wezterm.lua`
+2. Symlink `wezterm/.wezterm.lua` → `~/.config/wezterm/wezterm.lua`
 3. Symlink `nvim/` → `~/.config/nvim/`
 4. Bootstrap Neovim plugins via `lazy.nvim`
 
@@ -94,7 +94,7 @@ git clone git@github.com:SejuneOh/WezTerm.git ~/dev/project/WezTerm
 ### 3. Symlink configs
 
 ```bash
-ln -sf ~/dev/project/WezTerm/wezterm/.wezterm.lua ~/.wezterm.lua
+ln -sf ~/dev/project/WezTerm/wezterm/.wezterm.lua ~/.config/wezterm/wezterm.lua
 ln -sf ~/dev/project/WezTerm/nvim ~/.config/nvim
 ```
 
@@ -232,9 +232,23 @@ All plugin specs live in `nvim/lua/plugins/` — one file per plugin.
 |------|--------|
 | `Ctrl+h/j/k/l` | Move between splits |
 | `Alt+h/j/k/l` | Resize split |
+| `\sv` | Vertical split |
+| `\sh` | Horizontal split |
+| `\se` | Equalize split sizes |
+| `\sx` | Close current split |
 | `\sm` | Toggle split maximize |
 | `\ws` | Save session |
 | `\wr` | Restore session |
+
+### Neovim — General
+
+| Keys | Action |
+|------|--------|
+| `Esc` | Clear search highlight |
+| `Ctrl+s` | Save file |
+| `Ctrl+a` | Select all |
+| `<` / `>` (visual) | Indent and stay in visual mode |
+| `p` (visual) | Paste without losing register |
 
 ### Neovim — Editing
 

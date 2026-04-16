@@ -11,7 +11,7 @@
     "install_script": "scripts/install.sh"
   },
   "install_paths": {
-    "wezterm": "~/.wezterm.lua",
+    "wezterm": "~/.config/wezterm/wezterm.lua",
     "neovim": "~/.config/nvim"
   },
   "prerequisites": [
@@ -275,10 +275,36 @@
         "MSSQL URL format: sqlserver://user:pass@host:1433?database=dbname"
       ],
       "verification": ["DBUIToggle_opens_sidebar", "query_execution_returns_results"]
+    },
+    {
+      "id": "basic_keymaps",
+      "status": "done",
+      "file": "nvim/lua/config/keymaps.lua",
+      "applied_components": [
+        "leader_key_explicit_in_init_lua",
+        "esc_clear_search_highlight",
+        "ctrl_s_save",
+        "visual_indent_stay",
+        "visual_paste_keep_register",
+        "ctrl_a_select_all",
+        "leader_s_window_splits"
+      ],
+      "keymaps": {
+        "<Esc>": "clear search highlight",
+        "<C-s>": "save file (normal + insert)",
+        "<C-a>": "select all",
+        "< / > (visual)": "indent and stay in visual mode",
+        "p (visual)": "paste without losing register",
+        "<leader>sv": "vertical split",
+        "<leader>sh": "horizontal split",
+        "<leader>se": "equalize split sizes",
+        "<leader>sx": "close current split"
+      },
+      "verification": ["leader_key_is_backslash", "Esc_clears_search_highlight", "Ctrl-s_saves_file"]
     }
   ],
   "user_preferences": {
-    "theme_family": "tokyo_night",
+    "theme_family": "catppuccin_mocha",
     "leader_key": "\\",
     "indent_guide_char": "┊",
     "transparency": true,

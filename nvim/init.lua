@@ -1,5 +1,12 @@
+-- Leader key (lazy.nvim 로드 전에 설정해야 함)
+vim.g.mapleader = "\\"
+vim.g.maplocalleader = "\\"
+
 -- Basic options
 require("config.options")
+
+-- Basic keymaps
+require("config.keymaps")
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

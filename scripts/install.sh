@@ -137,7 +137,7 @@ do_install() {
   check_cmd_optional lazygit "Lazygit keybinding (<leader>gg) will not work. Install: https://github.com/jesseduffield/lazygit#installation"
 
   info "Linking WezTerm config..."
-  link_config "$REPO_DIR/wezterm/.wezterm.lua" "$HOME/.wezterm.lua"
+  link_config "$REPO_DIR/wezterm/.wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
 
   info "Linking Neovim config..."
   link_config "$REPO_DIR/nvim" "$HOME/.config/nvim"
@@ -157,7 +157,7 @@ do_uninstall() {
   info "Uninstalling symlinks (backups from previous installs are preserved)..."
   [[ "$DRY_RUN" -eq 1 ]] && info "DRY-RUN mode: no files will be modified."
 
-  unlink_config "$HOME/.wezterm.lua"
+  unlink_config "$HOME/.config/wezterm/wezterm.lua"
   unlink_config "$HOME/.config/nvim"
 
   info "Done. Restore a backup manually if needed:"
