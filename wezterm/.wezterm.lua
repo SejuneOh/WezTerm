@@ -7,11 +7,15 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
 -- Font
-config.font = wezterm.font("D2CodingLigature Nerd Font")
+config.font = wezterm.font_with_fallback({
+  "D2CodingLigature Nerd Font",
+  "D2Coding",
+  "Consolas",
+})
 config.font_size = 10.0
 
 -- Color Theme
-config.color_scheme = "Catppuccin Mocha"
+config.color_scheme = "Github Dark (Gogh)"
 
 -- Background Opacity
 config.window_background_opacity = 0.92
@@ -33,7 +37,7 @@ config.window_padding = {
 -- Tabline
 tabline.setup({
   options = {
-    theme = "Catppuccin Mocha",
+    theme = "Github Dark (Gogh)",
   },
 })
 
@@ -54,11 +58,19 @@ config.keys = {
     mods = "ALT",
     action = workspace_switcher.switch_to_prev_workspace(),
   },
-  -- Copy (Ctrl+c)
+  -- Copy (Ctrl+c): selection이 있으면 복사, 없으면 SIGINT 전달
   {
     key = "c",
     mods = "CTRL",
-    action = wezterm.action.CopyTo("Clipboard"),
+    action = wezterm.action_callback(function(window, pane)
+      local sel = window:get_selection_text_for_pane(pane)
+      if sel and sel ~= "" then
+        window:perform_action(wezterm.action.CopyTo("ClipboardAndPrimarySelection"), pane)
+        window:perform_action(wezterm.action.ClearSelection, pane)
+      else
+        window:perform_action(wezterm.action.SendString("\x03"), pane)
+      end
+    end),
   },
   -- Paste (Ctrl+v)
   {
