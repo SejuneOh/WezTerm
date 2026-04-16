@@ -54,21 +54,6 @@ sudo apt install dotnet-sdk-8.0
 # Then re-run Mason install inside Neovim
 :MasonInstall omnisharp csharpier
 ```
-- [ ] **lsp_setup** — mason, mason-lspconfig, nvim-lspconfig
-      - For C#: `omnisharp` or `csharp_ls`
-      - For Lua: `lua_ls`
-      - For TypeScript: `ts_ls`
-      - For Python: `pyright`
-- [ ] **diagnostics** — trouble.nvim
-- [ ] **formatting** — conform.nvim
-      - For C#: `csharpier`
-      - For JS/TS: `prettier`
-      - For Lua: `stylua`
-      - For Python: `black`, `isort`
-- [ ] **linting** — nvim-lint
-      - For JS/TS: `eslint_d`
-      - For Python: `pylint`
-- [ ] **git_integration** — gitsigns.nvim, lazygit.nvim
 
 ## Deviations from Reference Tutorial
 

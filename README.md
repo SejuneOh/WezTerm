@@ -8,7 +8,7 @@ A complete terminal development environment using **WezTerm** and **Neovim**, tu
 
 ## Preview
 
-- Terminal: **WezTerm** with Tokyo Night theme, transparent background, and a tabline plugin
+- Terminal: **WezTerm** with Catppuccin Mocha theme, transparent background, and a tabline plugin
 - Editor: **Neovim 0.10+** with LSP-ready plugin stack (file explorer, fuzzy finder, treesitter, etc.)
 - Seamless pane navigation between WezTerm and Neovim via `smart-splits`
 
@@ -113,7 +113,7 @@ nvim
 ### Features
 
 - **Font:** D2CodingLigature Nerd Font (size 10)
-- **Theme:** Tokyo Night
+- **Theme:** Catppuccin Mocha
 - **Background opacity:** 0.92
 - **Tabline plugin** for a cleaner tab bar
 - **Workspace switcher** (zoxide-backed, fuzzy finder)
@@ -193,9 +193,10 @@ All plugin specs live in `nvim/lua/plugins/` — one file per plugin.
 
 | Keys | Action |
 |------|--------|
-| `Ctrl+Shift+%` | Split pane horizontally |
-| `Ctrl+Shift+"` | Split pane vertically |
-| `Ctrl+Shift+w` | Close current pane |
+| `Ctrl+Shift+d` | Split pane horizontally (left/right) |
+| `Ctrl+Shift+D` | Split pane vertically (top/bottom) |
+| `Ctrl+Shift+w` | Close current pane (with confirmation) |
+| `Ctrl+Shift+z` | Toggle pane zoom |
 | `Ctrl+c` | Copy (when text is selected; otherwise SIGINT) |
 | `Ctrl+v` | Paste |
 | `Alt+s` | Workspace switcher (fuzzy finder) |
