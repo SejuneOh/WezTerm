@@ -188,6 +188,10 @@ All plugin specs live in `nvim/lua/plugins/` — one file per plugin.
 ## Keybindings Reference
 
 > Leader key is `\` (default Neovim leader).
+>
+> The tables below are a curated quick-start. For the full per-plugin reference
+> (Roslyn / Flash / Harpoon / DAP / .NET / Neotest / Noice / Aerial / etc.) see
+> [`docs/NVIM_KEYMAPS.md`](docs/NVIM_KEYMAPS.md).
 
 ### WezTerm
 
@@ -259,7 +263,7 @@ All plugin specs live in `nvim/lua/plugins/` — one file per plugin.
 | `ysiw"` | Surround word with `"` |
 | `cs"'` | Change surrounding `"` → `'` |
 | `ds"` | Delete surrounding `"` |
-| `s` + motion | Substitute with register |
+| `gs` + motion | Substitute with register (e.g. `gsiw` to swap a word) |
 | `]t` / `[t` | Next / previous TODO comment |
 
 ---
@@ -278,6 +282,8 @@ All plugin specs live in `nvim/lua/plugins/` — one file per plugin.
 ├── scripts/
 │   └── install.sh             — one-shot installer
 └── docs/
+    ├── DATABASE.md            — vim-dadbod database integration guide
+    ├── NVIM_KEYMAPS.md        — full per-plugin keymap reference
     └── ROADMAP.md             — remaining work & installation order
 ```
 
