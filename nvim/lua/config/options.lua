@@ -47,3 +47,9 @@ opt.timeoutlen = 500 -- 키 시퀀스 대기 시간 (which-key 팝업 속도)
 opt.mouse = "a" -- 마우스 활성화 (모든 모드)
 opt.showmode = false -- 모드 표시 안 함 (lualine이 대신 표시)
 opt.completeopt = "menuone,noselect" -- 자동완성 동작
+
+-- 코드 접기 (treesitter 기반)
+opt.foldmethod = "expr" -- 표현식으로 fold 영역 결정
+opt.foldexpr = "nvim_treesitter#foldexpr()" -- treesitter가 구문 트리로 자동 계산
+opt.foldenable = false -- 파일 열 때 모두 펼친 상태로 시작
+opt.foldlevel = 99 -- 깊이 99까지는 자동으로 접지 않음

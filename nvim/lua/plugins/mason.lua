@@ -10,6 +10,11 @@ return {
     local mason_tool_installer = require("mason-tool-installer")
 
     mason.setup({
+      -- roslyn LSP는 커스텀 레지스트리에 있어 추가 필요
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      },
       ui = {
         icons = {
           package_installed = "✓",
@@ -22,7 +27,6 @@ return {
     mason_lspconfig.setup({
       ensure_installed = {
         "lua_ls", -- Lua
-        "omnisharp", -- C#
         "ts_ls", -- TypeScript / JavaScript
         "pyright", -- Python
         "html",
@@ -43,6 +47,9 @@ return {
         -- linters
         "eslint_d", -- JS / TS
         "pylint", -- Python
+        -- C# (roslyn.nvim 용)
+        "roslyn",
+        "netcoredbg",
       },
     })
   end,
