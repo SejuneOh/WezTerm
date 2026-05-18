@@ -59,11 +59,16 @@ return {
           return candidates[1]
         end
 
-        -- 여러 개면 사용자 선택
+        -- 여러 개면 coroutine으로 vim.ui.select 비동기 결과 받기
+        -- (dap는 program 함수를 coroutine 컨텍스트에서 호출함)
+        local co = coroutine.running()
+        if not co then
+          return candidates[1] -- coroutine 밖이면 안전 폴백
+        end
         vim.ui.select(candidates, { prompt = "DLL 선택:" }, function(choice)
-          return choice
+          coroutine.resume(co, choice or candidates[1])
         end)
-        return candidates[1]
+        return coroutine.yield()
       end
 
       ----------------------------------------------------------------------

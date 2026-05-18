@@ -12,9 +12,9 @@ return {
       python = { "pylint" },
     }
 
-    -- 저장 시, 파일 열 때, 편집 모드 나올 때 린트 실행
+    -- 저장 시, 편집 모드 나올 때 린트 실행 (BufEnter는 큰 레포에서 노이즈 → 제외)
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+    vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave" }, {
       group = lint_augroup,
       callback = function()
         lint.try_lint()

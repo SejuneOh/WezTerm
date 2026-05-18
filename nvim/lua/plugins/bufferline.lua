@@ -30,8 +30,8 @@ return {
     keymap("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "버퍼 닫기" })
     keymap("n", "<leader>bp", "<cmd>BufferLinePick<cr>", { desc = "버퍼 선택" })
 
-    -- 번호로 바로 이동 (\1, \2, \3 ...)
-    for i = 1, 9 do
+    -- 번호로 바로 이동 (\5 ~ \9). 1~4는 harpoon 슬롯이 차지
+    for i = 5, 9 do
       keymap("n", "<leader>" .. i, "<cmd>BufferLineGoToBuffer " .. i .. "<cr>", { desc = "버퍼 " .. i .. "로 이동" })
     end
   end,

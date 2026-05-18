@@ -16,6 +16,10 @@ return {
   },
   config = function()
     require("easy-dotnet").setup({
+      managed_terminal = {
+        auto_hide = false,
+        auto_hide_delay = 5000,
+      },
       test_runner = {
         viewmode = "split",
         enable_buffer_test_execution = true,
@@ -34,6 +38,7 @@ return {
         project = { prefix = "sln" },
       },
       terminal = function(path, action, args)
+        args = args or "" -- nil 보호: string.format이 "nil" 문자열을 셸에 삽입하는 것 방지
         local commands = {
           run     = function() return string.format("dotnet run --project %s %s", path, args) end,
           test    = function() return string.format("dotnet test %s %s", path, args) end,
@@ -41,7 +46,7 @@ return {
           build   = function() return string.format("dotnet build %s %s", path, args) end,
         }
         local command = commands[action]() .. "\r"
-        vim.cmd("vsplit | term " .. command)
+        vim.cmd("botright split | term " .. command)
       end,
     })
 
@@ -94,7 +99,7 @@ return {
             vim.fn.shellescape(proj_dir),
             vim.fn.shellescape(choice)
           )
-          vim.cmd("vsplit | term " .. cmd)
+          vim.cmd("botright split | term " .. cmd)
         end)
       end
 

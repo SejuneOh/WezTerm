@@ -18,9 +18,9 @@ return {
       vim.g.db_ui_execute_on_save = 0 -- 저장 시 자동 실행 끄기
     end,
     keys = {
-      { "<leader>du", "<cmd>DBUIToggle<cr>", desc = "DB UI 토글" },
-      { "<leader>df", "<cmd>DBUIFindBuffer<cr>", desc = "DB 쿼리 버퍼 찾기" },
-      { "<leader>da", "<cmd>DBUIAddConnection<cr>", desc = "DB 연결 추가" },
+      { "<leader>Du", "<cmd>DBUIToggle<cr>", desc = "DB UI 토글" },
+      { "<leader>Df", "<cmd>DBUIFindBuffer<cr>", desc = "DB 쿼리 버퍼 찾기" },
+      { "<leader>Da", "<cmd>DBUIAddConnection<cr>", desc = "DB 연결 추가" },
     },
   },
   {
