@@ -32,8 +32,14 @@ return {
         "html",
         "cssls",
         "jsonls",
+        "yamlls", -- YAML (k8s, GitHub Actions, docker-compose)
+        "bashls", -- Bash / Shell
+        "dockerls", -- Dockerfile
+        "marksman", -- Markdown
+        "taplo", -- TOML
       },
       automatic_installation = true,
+      automatic_enable = false, -- vim.lsp.enable()로 명시한 서버만 시작 (omnisharp 등 자동 enable 방지)
     })
 
     mason_tool_installer.setup({

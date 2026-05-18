@@ -34,7 +34,12 @@ return {
       "html",
       "cssls",
       "jsonls",
+      "yamlls",
       "lua_ls",
+      "bashls",
+      "dockerls",
+      "marksman",
+      "taplo",
       -- C#은 roslyn.nvim 플러그인이 직접 LSP를 관리하므로 여기서 제외
     })
 
@@ -68,11 +73,12 @@ return {
         map_if("textDocument/hover", "n", "K", vim.lsp.buf.hover, "LSP: 호버 문서")
 
         -- 진단(Diagnostic) 키맵: LSP 메서드와 무관, 항상 등록
+        -- 단독 <leader>d/<leader>D는 DAP/dadbod prefix와 충돌하므로 다른 키로 이동
         opts.desc = "LSP: 버퍼 진단 목록"
-        keymap("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
+        keymap("n", "<leader>xD", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
 
         opts.desc = "LSP: 현재 줄 진단 표시"
-        keymap("n", "<leader>d", vim.diagnostic.open_float, opts)
+        keymap("n", "<leader>k", vim.diagnostic.open_float, opts)
 
         opts.desc = "LSP: 이전 진단"
         keymap("n", "[d", function()
@@ -87,6 +93,30 @@ return {
         -- LSP 컨트롤 명령 (capability 무관)
         opts.desc = "LSP: 재시작"
         keymap("n", "<leader>rs", ":LspRestart<CR>", opts)
+
+        -- Inlay hints: 변수 타입/매개변수명 인라인 표시 (서버 지원 시)
+        if client:supports_method("textDocument/inlayHint") then
+          vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+          opts.desc = "LSP: Inlay hints 토글"
+          keymap("n", "<leader>ih", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }), { bufnr = args.buf })
+          end, opts)
+        end
+
+        -- Document highlight: 커서 둔 심볼 자동 하이라이트 (서버 지원 시)
+        if client:supports_method("textDocument/documentHighlight") then
+          local hl_group = vim.api.nvim_create_augroup("user_lsp_doc_highlight_" .. args.buf, { clear = true })
+          vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+            group = hl_group,
+            buffer = args.buf,
+            callback = vim.lsp.buf.document_highlight,
+          })
+          vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufLeave" }, {
+            group = hl_group,
+            buffer = args.buf,
+            callback = vim.lsp.buf.clear_references,
+          })
+        end
       end,
     })
   end,

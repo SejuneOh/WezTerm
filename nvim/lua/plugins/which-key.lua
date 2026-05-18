@@ -13,7 +13,8 @@ return {
     wk.add({
       { "<leader>b", group = "buffer" },
       { "<leader>c", group = "code" },
-      { "<leader>d", group = "diagnostic/database/debug" },
+      { "<leader>d", group = "database/debug" },
+      { "<leader>k", desc = "현재 줄 진단 표시" },
       { "<leader>e", group = "explorer" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
