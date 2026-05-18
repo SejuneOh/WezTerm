@@ -11,6 +11,8 @@ config.font = wezterm.font_with_fallback({
   "D2CodingLigature Nerd Font",
   "D2Coding",
   "Consolas",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
 })
 config.font_size = 10.0
 
