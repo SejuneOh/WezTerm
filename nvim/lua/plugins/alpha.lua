@@ -34,8 +34,9 @@ return {
     alpha.setup(dashboard.opts)
 
     -- lazy.nvim 로딩 완료 시 푸터에 플러그인 수 표시
+    -- (LazyVimStarted는 LazyVim 디스트로 전용, 일반 lazy.nvim은 VeryLazy 사용)
     vim.api.nvim_create_autocmd("User", {
-      pattern = "LazyVimStarted",
+      pattern = "VeryLazy",
       callback = function()
         local stats = require("lazy").stats()
         dashboard.section.footer.val = "  "
