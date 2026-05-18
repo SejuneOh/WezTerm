@@ -1,0 +1,62 @@
+{
+  "env": {},
+  "permissions": {
+    "allow": [
+      "Bash(gh auth status)",
+      "Bash(gh run list --workflow=dev-to-int-pr.yml --limit=5)",
+      "Bash(gh run:*)",
+      "Bash(gh secret:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh issue:*)",
+      "Bash(git add:*)",
+      "Bash(git checkout:*)",
+      "Bash(git commit:*)",
+      "Bash(git fetch:*)",
+      "Bash(git merge:*)",
+      "Bash(git push:*)",
+      "Bash(grep -v \"^$\")",
+      "Bash(npx vercel:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm test)",
+      "Bash(pnpm tsc:*)"
+    ],
+    "additionalDirectories": []
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash __HOME__/.claude/hooks/session-start.sh"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "[ -d \".git\" ] && echo 'GIT_REPO_DETECTED: Git repository found in working directory.' || true"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash __HOME__/.claude/hooks/notify-windows.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark-ansi",
+  "statusLine": {
+    "type": "command",
+    "command": "bash __HOME__/.claude/statusline-command.sh"
+  }
+}

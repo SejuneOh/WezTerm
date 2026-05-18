@@ -22,6 +22,7 @@ A complete terminal development environment using **WezTerm** and **Neovim**, tu
 - [WezTerm Setup](#wezterm-setup)
 - [Neovim Setup](#neovim-setup)
 - [Keybindings Reference](#keybindings-reference)
+- [Claude Code Setup](#claude-code-setup)
 - [Directory Structure](#directory-structure)
 - [For AI Assistants](#for-ai-assistants)
 
@@ -279,13 +280,67 @@ All plugin specs live in `nvim/lua/plugins/` — one file per plugin.
 ├── nvim/
 │   ├── init.lua               — Neovim entry point (bootstraps lazy.nvim)
 │   └── lua/plugins/           — one file per plugin spec
+├── claude/                    — portable Claude Code config (see Claude Code Setup)
+│   ├── CLAUDE.md
+│   ├── settings.json
+│   ├── statusline-command.sh
+│   ├── usage-fetch.py
+│   ├── agents/
+│   ├── hooks/
+│   └── skills/{obsidian,pr-draft,project-launcher}/
 ├── scripts/
-│   └── install.sh             — one-shot installer
+│   ├── install.sh             — one-shot wezterm + nvim installer
+│   └── install-claude.sh      — symlink claude/ into ~/.claude/
 └── docs/
     ├── DATABASE.md            — vim-dadbod database integration guide
     ├── NVIM_KEYMAPS.md        — full per-plugin keymap reference
     └── ROADMAP.md             — remaining work & installation order
 ```
+
+---
+
+## Claude Code Setup
+
+This repo also ships a portable Claude Code config under [`claude/`](./claude). It mirrors `~/.claude/` and lets you reproduce the same skills, hooks, statusline, agents, and global instructions on another machine.
+
+### Install
+
+```bash
+bash scripts/install-claude.sh
+```
+
+The script:
+1. Symlinks `claude/CLAUDE.md`, `statusline-command.sh`, `usage-fetch.py`, `agents/`, `hooks/`, and each `skills/<name>/` folder into `~/.claude/`.
+2. Copies `claude/settings.json` to `~/.claude/settings.json`, substituting `__HOME__` with your actual `$HOME`.
+3. Seeds `skills/project-launcher/projects.json` from `projects.json.example` on first run (the real registry is gitignored).
+
+Existing real files in `~/.claude/` are backed up as `<name>.bak-YYYYmmdd-HHMMSS` before being replaced. Run `bash scripts/install-claude.sh --dry-run` to preview.
+
+### Per-machine env vars
+
+Set these in your shell rc (`.bashrc` / `.zshrc`) only if you use the corresponding feature:
+
+```bash
+export CLAUDE_OBSIDIAN_VAULT="/path/to/Obsidian/vault"     # obsidian skill + session-start hook
+export CLAUDE_PR_TEMPLATE_PATH="/path/to/PR_template.md"    # pr-draft skill
+export CLAUDE_PR_OUTPUT_DIR="/path/to/PR/output/dir"        # pr-draft skill
+```
+
+### What's inside `claude/`
+
+| Path | Role |
+|------|------|
+| `CLAUDE.md` | Global instructions (English-learning rephrase, session-start git detection) |
+| `settings.json` | Hooks, statusline command, theme, generic permissions (paths use `__HOME__` token) |
+| `statusline-command.sh` + `usage-fetch.py` | Two-line statusline: dir, branch, git counts, model, 5h/7d Anthropic usage |
+| `agents/dotnet-api-developer.md` | Custom subagent for ASP.NET Core API work |
+| `hooks/session-start.sh` | Prints git context at session start; optionally shows Obsidian project note |
+| `hooks/notify-windows.sh` | Windows balloon notification on Claude notifications (WSL only) |
+| `skills/obsidian/` | Vault note manager (`/obsidian --project`, `--inbox`, `--decision`, etc.) |
+| `skills/pr-draft/` | PR body draft generator from current branch |
+| `skills/project-launcher/` | Dispatch background Claude sessions to registered projects |
+
+> The `notify-windows.sh` hook is WSL-specific (uses `powershell.exe`). On macOS/Linux non-WSL, either replace it with a platform-appropriate notifier or remove the `Notification` entry from `settings.json` after install.
 
 ---
 

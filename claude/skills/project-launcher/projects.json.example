@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "name": "api",
+      "path": "/home/me/dev/myorg/api",
+      "description": "Backend API server",
+      "on_start": "/obsidian --project"
+    },
+    {
+      "name": "web",
+      "path": "/home/me/dev/myorg/web",
+      "description": "Frontend web app",
+      "on_start": "/obsidian --project"
+    }
+  ]
+}

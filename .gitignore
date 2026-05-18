@@ -7,3 +7,7 @@
 # Neovim runtime data (installed plugins, sessions, etc.)
 # Only source/config files should be tracked.
 nvim/lazy-lock.json.bak
+
+# Claude project-launcher: keep the example, gitignore the real registry
+# (real registry contains user-specific project paths)
+claude/skills/project-launcher/projects.json
