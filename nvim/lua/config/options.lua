@@ -11,6 +11,10 @@ opt.expandtab = true -- Tab을 공백으로 변환
 opt.autoindent = true -- 이전 줄의 들여쓰기 유지
 opt.smartindent = true -- 구문에 따라 지능적으로 들여쓰기
 
+-- markdown은 nvim 런타임 ftplugin이 4칸으로 덮어쓴다. 위 2칸 설정을 유지하기 위해 끈다.
+-- (사용자 ftplugin/markdown.lua로는 안 된다 - 런타임 ftplugin이 나중에 실행된다)
+vim.g.markdown_recommended_style = 0
+
 -- 줄바꿈
 opt.wrap = false -- 긴 줄을 자동으로 줄바꿈하지 않음
 
