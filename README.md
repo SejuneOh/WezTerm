@@ -371,9 +371,11 @@ config that mirrors `~/.claude/`. Install via [Path 1](#path-1--native-installer
 | `agents/dotnet-api-developer.md` | Custom subagent for ASP.NET Core API work |
 | `hooks/session-start.sh` | Prints git context at session start; optionally shows an Obsidian project note |
 | `hooks/notify-windows.sh` | Windows balloon notification on Claude notifications (WSL only) |
+| `hooks/readable-inject.sh` | Injects the `readable` skill rules into every prompt (requires `jq`) |
 | `skills/obsidian/` | Vault note manager (`/obsidian --project`, `--inbox`, `--decision`, etc.) |
 | `skills/pr-draft/` | PR body draft generator from current branch |
 | `skills/project-launcher/` | Dispatch background Claude sessions to registered projects |
+| `skills/readable/` | Plain-language explanation rules (`/readable`), applied to every answer by the hook above |
 
 > `notify-windows.sh` is WSL-specific (uses `powershell.exe`). On non-WSL
 > macOS/Linux, either replace it with a platform-appropriate notifier or
@@ -505,7 +507,7 @@ config that mirrors `~/.claude/`. Install via [Path 1](#path-1--native-installer
 │   ├── usage-fetch.py
 │   ├── agents/
 │   ├── hooks/
-│   └── skills/{obsidian,pr-draft,project-launcher}/
+│   └── skills/{obsidian,pr-draft,project-launcher,readable}/
 ├── scripts/
 │   ├── install.sh             — dotfiles-symlink installer (Path 3)
 │   └── install-claude.sh      — symlink claude/ into ~/.claude/
